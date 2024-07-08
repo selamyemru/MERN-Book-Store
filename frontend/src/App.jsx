@@ -8,12 +8,14 @@ import EditBook from "./pages/EditBook";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import BookDetail from "./pages/BookDetail";
+import AddToCart from "./component/AddToCart";
 function App() {
   return (
     <Router>
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cartitem" element={<AddToCart/>} />
         <Route path="/addbook" element={<AddBook />} />
         <Route path="/booklist" element={<BookList />} />
         <Route path="/login" element={<Login />} />

@@ -48,39 +48,43 @@ function Home() {
   }
 
   return (
-    <section className='mt-[17vh] flex flex-col sm:flex-none'>
-      <div className='mb-20 flex items-center  justify-center '>
-        <input type='text' placeholder='Search here..' onChange={(e)=>setSearchTerm(e.target.value)} className='border-2 border-gray-200 px-80 py-2 mr-4 w-[58%] outline-slate-200'/>
-        {/* <FaSearch size={23} color='green'/> */}
-      </div>
-      <div className=' w-full sm:w-fit sm:h-screen bg-gray-200 sm:bg-gray-100 fixed top-16 left-0  px-10'>
-        <div className='pt-20 flex flex-col items-center  gap-2 font-semibold text-green-800 '>
-          <select value={selectCategory} onChange={handleCategoryChange} color='green' className='border-2 border-gray-200 px-8 py-1 outline-none'>
-            <option value="">All Categories</option>
+    <section className='mt-[17vh] '>
+      <div className='mb-20 flex flex-col sm:flex-row mx-[10vw] items-center gap-2 sm:gap-0 '>
+        <div className=' gap-2 font-semibold text-green-800 '>
+          <select value={selectCategory} onChange={handleCategoryChange}  className='border-2  border-gray-200 px-8 py-2 outline-none'>
+            <option value="" >All Categories</option>
             {categories?.map((category) => (
               <option key={category} value={category}>
                 {category}
               </option>
             ))}
           </select>
+          <input type='text' placeholder='Search here..' onChange={(e) => setSearchTerm(e.target.value)} className='border-2 border-gray-200 px-40 py-2 mr-4 w-fit outline-slate-200' />
         </div>
       </div>
-      <div className="grid  mt-48 sm:mt-0 grid-cols-2 sm:grid-cols-3  lg:grid-cols-4  gap-6 items-center mr-[10vw] ml-[20vw] sm:ml-[25vw] md:ml-[20vw] ">
+      <div className=' w-full sm:w-fit sm:h-screen fixed top-16 left-0  px-10'>
+
+      </div>
+      <div className="grid  mt-18 sm:mt-0 grid-cols-2 sm:grid-cols-3  lg:grid-cols-4  gap-6 items-center mx-[10vw]">
         {loading ? <div>Loading...</div>
           : (
-            books.filter((book)=>{
-              if(searchTerm===''){
+            books.filter((book) => {
+              if (searchTerm === '') {
                 return book
-              } else if(book.name.toLowerCase().includes(searchTerm.toLowerCase())){
+              } else if (book.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                 return book
               }
 
             }).map(book => (
-              <div key={book._id} className='flex flex-col  gap-2 bg-gray-100 w-fit p-2  items-center shadow-lg border-2 border-gray-200'>
+              <div key={book._id} className='flex flex-col  gap-2 bg-gray-100 w-[15vw] p-2 shadow-sm border-2 border-gray-200 pb-4'>
+                <h1 className='font-semibold text-xl    '>{book.name}</h1>
                 <img src={book.image} width={200} height={400} />
-                <p><span className='mr-4'>price:</span>${book.price}</p>
-                <button onClick={() => openModal(book)} className='text-green-800'> View Book Detail</button>
-                <button className=' px-6 sm:px-4 py-1 sm:py-2 rounded-lg bg-green-800 text-white'>Add to Cart</button>
+                <p>${book.price}</p>
+                <div className='flex gap-4 '>
+                  <button onClick={() => openModal(book)} className='text-green-500'> View Detail</button>
+                  <button className=' px-6 sm:px-4 py-1  rounded-lg bg-gray-200 '>Add to Cart</button>
+                </div>
+
               </div>
             ))
           )
