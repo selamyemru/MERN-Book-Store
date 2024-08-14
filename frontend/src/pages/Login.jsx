@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { useState } from "react";
 import { useSnackbar } from "notistack";
+
 function Login() {
   const { enqueueSnackbar } = useSnackbar()
   const navigate = useNavigate()
@@ -16,10 +17,11 @@ function Login() {
       [e.target.name]: e.target.value
     })
   }
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/login", user)
+      const response = await axios.post("http://localhost:4000/login", user,{withCredentials:true})
       if (response.status==200) {
         setSuccess(response.data)
         setUser({
@@ -28,8 +30,6 @@ function Login() {
         })
         enqueueSnackbar('login Success', { variant: 'success' })
         navigate('/booklist')
-        // localStorage.setItem('token',response.data.token); 
-        document.cookie = `token=${response.data.token}; path=/; max-age=3600`;
 
       } else {
         navigate("/signup")
@@ -59,6 +59,7 @@ function Login() {
         <button type="submit" className=' py-1 bg-green-800 text-white w-fit px-8 rounded-lg outline-none'>Login</button>
         <p className="text-xl text-green-800">Click<Link to={'/signup'} className='px-3  rounded-lg py-2   underline text-blue-700'>here</Link>to register</p>
       </form>
+
     </div>
   )
 }

@@ -10,13 +10,14 @@ function Signup() {
   const [user, setUser] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    passwordVerify: ''
 
   })
   const addUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/adduser", user);
+      const response = await axios.post("http://localhost:4000/adduser", user,{withCredentials:true});
 
       if (response) {
         enqueueSnackbar('user successfull submited!',{variant:'success'})
@@ -24,7 +25,8 @@ function Signup() {
         setUser({
           name: '',
           email: '',
-          password: ''
+          password: '',
+          passwordVerify: ''
         });
         navigate('/login')
 
@@ -61,6 +63,10 @@ function Signup() {
         <div className='flex flex-col gap-1'>
           <label className='font-semibold'>Password</label>
           <input type='password' name="password" placeholder="enterr book Password?" value={user.password} onChange={handleChange} className='h-[5vh] w-[25vw] rounded-lg  pl-3 outline-none bg-gray-100 border-2 border-gray-200' />
+        </div>
+        <div className='flex flex-col gap-1'>
+          <label className='font-semibold'>Confirm password</label>
+          <input type='password' name="passwordVerify" placeholder="confirm password?" value={user.passwordVerify} onChange={handleChange} className='h-[5vh] w-[25vw] rounded-lg  pl-3 outline-none bg-gray-100 border-2 border-gray-200' />
         </div>
         <button type='submit' className=' py-2 bg-green-800 w-fit px-6 rounded-lg text-white '>Register</button>
       </form>

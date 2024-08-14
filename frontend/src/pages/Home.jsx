@@ -124,7 +124,7 @@
 // }
 
 // export default Home
-import Cart from '../component/AddToCart'
+// import Cart from '../component/AddToCart'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'

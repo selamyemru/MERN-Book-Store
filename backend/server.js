@@ -20,7 +20,8 @@ app.use(cors(
   {
     origin:'http://localhost:5173',
     method:['GET','POST','PUT','DELETE'],
-    AllowedHeaders:['Content-Type']
+    credentials:true,
+
   }
 ))
 app.use(express.json())

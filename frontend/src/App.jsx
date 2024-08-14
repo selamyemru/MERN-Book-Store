@@ -12,14 +12,14 @@ import AddToCart from "./component/AddToCart";
 function App() {
   return (
     <Router>
-      <Navbar/>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cartitem" element={<AddToCart/>} />
-        <Route path="/addbook" element={<AddBook />} />
-        <Route path="/booklist" element={<BookList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cartitem" element={<AddToCart />} />
+        <Route path="/addbook" element={<AddBook />} />
+        <Route path="/booklist" element={<BookList />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/editbook/:id" element={<EditBook />} />
         <Route path="getbook/:id" element={<BookDetail />} />
